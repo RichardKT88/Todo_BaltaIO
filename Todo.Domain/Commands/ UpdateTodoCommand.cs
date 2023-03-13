@@ -1,24 +1,27 @@
 using Flunt.Notifications;
 using Flunt.Validations;
 using Todo.Domain.Commands.Contracts;
+
 namespace Todo.Domain.Commands
 {
-    public class CreateTodoCommand : Notifiable, ICommand
+    public class UpdateTodoCommand: Notifiable, ICommand
     {
-        public CreateTodoCommand() { }
-        public CreateTodoCommand(string title, DateTime date, string user)
+        public UpdateTodoCommand() { }
+
+        public UpdateTodoCommand(Guid id, string title, string user)
         {
+            Id = id;
             Title = title;
-            Date = date;
             User = user;
         }
-        public string Title { get; set; } = string.Empty;
-        public DateTime Date { get; set; }
-        public string User { get; set; } = string.Empty;
+
+        public Guid Id { get; set; }
+        public string? Title { get; set; }
+        public string? User { get; set; }
 
         public void Validate()
         {
-             AddNotifications(
+            AddNotifications(
                 new Contract()
                     .Requires()
                     .HasMinLen(Title, 3, "Title", "Por favor, descreva melhor esta tarefa!")
