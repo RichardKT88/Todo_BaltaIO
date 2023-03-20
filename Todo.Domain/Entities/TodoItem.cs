@@ -19,7 +19,7 @@ namespace Todo.Domain.Entities
         {
             Done = true;
         }
-        public void MarkAsUnDone()
+        public void MarkAsUndone()
         {
             Done = false;
         }
